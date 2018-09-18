@@ -1,3 +1,6 @@
+
+# Adapted from https://tutorial.cytron.io/2017/08/16/raspberry-pi-zero-w-pi-camera-application/
+
 from picamera.array import PiRGBArray
 from picamera import PiCamera
 import time
