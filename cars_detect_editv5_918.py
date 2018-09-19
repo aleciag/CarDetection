@@ -34,10 +34,10 @@ while True:
 
     count=0
     i = 0
-    carcount_arr = np.zeros(20)
-    time_arr = np.zeros(20)
+    carcount_arr = np.zeros(240)
+    time_arr = np.zeros(240)
 
-    tstop = time.time() + 30
+    tstop = time.time() + 310
     while time.time() < tstop:
         
         ret,frame=cap.read()
@@ -52,7 +52,7 @@ while True:
         # The following line is commented out to allow this sript to run without a display
         # cv2.imshow('frame',frame)
 
-        if i < 20:
+        if i < 240:
             time_arr[i] = time.time()
             carcount_arr[i]=len(cars)
             print ("number of cars:" )
