@@ -1,0 +1,8 @@
+Code to make the Pi boot up and run:
+
+echo Running at boot
+
+cd /home/pi/.virtualenvs
+source cv_wh/bin/activate
+cd ./cv_wh/ProjectDocs/code/IOT-master
+python cars_detect_editv5_918.py &
