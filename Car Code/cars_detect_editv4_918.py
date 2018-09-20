@@ -22,10 +22,11 @@ out = cv2.VideoWriter(path + filename,fourcc,fps=1,frameSize=(640,480))
 car_cascade = cv2.CascadeClassifier('cars.xml')
 
 count=0
-i = 0;
-carcount_arr = np.zeros(20);
+i = 0
+carcount_arr = np.zeros(30)
+time_arr = np.zeros(30)
 
-tstop = time.time() + 20
+tstop = time.time() + 30
 while time.time() < tstop:
     
     ret,frame=cap.read()
@@ -38,16 +39,14 @@ while time.time() < tstop:
     cv2.putText(frame, str(count),(10,400), cv2.FONT_ITALIC, 2,(255,255,255),2,cv2.LINE_AA)
     out.write(frame)
     cv2.imshow('frame',frame)
-    
-    i +=1
 
+    time_arr[i] = time.time()
+    
     carcount_arr[i]=len(cars)
-    #print (frame.shape)
+    
     print ("number of cars:" )
     print (carcount_arr[i])
-
-
-
+    i +=1
         
     key = cv2.waitKey(1)
     #print (key)
@@ -58,19 +57,18 @@ while time.time() < tstop:
         break
 
 with h5py.File('testfile.hdf5','w') as f:
-    dset = f.create_dataset('carcount', data=carcount_arr)
-dset.name   
-    #f.create_dataset('time',data=time.time())
+    f.create_dataset('carcount', data=carcount_arr)
+    f.create_dataset('time', data=time_arr)
+
+
+f = h5py.File('testfile.hdf5','r')
+getcardata = f['carcount'].value
+gettimedata = f['time'].value
+print(getcardata)
+print(gettimedata)
     
     
-##with h5py.File('testfile.hdf5','r') as f:
-##    data = f.get('carcount')
-##    carcount = np.array(data)
-##    ls = list(f.keys())
-##    print(ls)
-##    print(carcount.shape)
-##    carcount[0]
-##    
+       
 cap.release()
 out.release()
 cv2.destroyAllWindows()
