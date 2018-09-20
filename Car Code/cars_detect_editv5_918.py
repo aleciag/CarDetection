@@ -39,9 +39,9 @@ while True:
 
     tstop = time.time() + 310
     while time.time() < tstop:
-        
+
         ret,frame=cap.read()
-        gray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY) 
+        gray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
         cars = car_cascade.detectMultiScale(gray, 1.3, 5)
         for (x,y,w,h) in cars:
             cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
@@ -58,7 +58,7 @@ while True:
             print ("number of cars:" )
             print (carcount_arr[i])
             i += 1
-            
+
 
     datafile = str(math.floor(time.time())) + '.hdf5'
     with h5py.File(datafile,'w') as f:
@@ -71,10 +71,9 @@ while True:
     gettimedata = f['time'].value
     print(getcardata)
     print(gettimedata)
-        
-        
-           
+
+
+
     cap.release()
     out.release()
     cv2.destroyAllWindows()
-
