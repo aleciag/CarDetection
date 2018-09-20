@@ -1,4 +1,4 @@
-Code to make the Pi boot up and run:
+This code was write in .bashrc to make the Pi boot up and run:
 
 echo Running at boot
 
